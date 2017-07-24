@@ -1,7 +1,7 @@
 FROM debian:stretch
 MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
-ARG DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 ENV PREFIX=/usr/local/cups
 ENV CUPSURL=https://github.com/apple/cups/releases/download/v2.2.4/cups-2.2.4-source.tar.gz
