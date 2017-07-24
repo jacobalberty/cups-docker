@@ -3,7 +3,7 @@ MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ENV PREFIX=/usr/local/cups
 ENV DEBIAN_FRONTEND noninteractive
-ENV CUPSURL=https://github.com/apple/cups/releases/download/v2.2.3/cups-2.2.3-source.tar.gz
+ENV CUPSURL=https://github.com/apple/cups/releases/download/v2.2.4/cups-2.2.4-source.tar.gz
 
 ADD build.sh ./build.sh
 
