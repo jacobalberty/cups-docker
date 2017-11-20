@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:stretch-slim
 MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
