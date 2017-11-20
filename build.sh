@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
+CUPSURL=https://github.com/apple/cups/releases/download/v${CUPS_VERSION}/cups-${CUPS_VERSION}-source.tar.gz
 
 apt-get update
 apt-get install -qy --no-install-recommends \

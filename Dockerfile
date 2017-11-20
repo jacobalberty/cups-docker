@@ -2,9 +2,9 @@ FROM debian:stretch
 MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
+ARG CUPS_VERSION=2.2.6
 
 ENV PREFIX=/usr/local/cups
-ENV CUPSURL=https://github.com/apple/cups/releases/download/v2.2.6/cups-2.2.6-source.tar.gz
 
 ADD build.sh ./build.sh
 
