@@ -22,5 +22,7 @@ file_env() {
     export "$var"="$val"
     unset "$fileVar"
 }
-
+if [ -d "/usr/local/docker/init.d" ]; then
+    run-parts /usr/local/docker/init.d
+fi
 $@
