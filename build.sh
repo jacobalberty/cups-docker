@@ -88,6 +88,8 @@ tar --strip=1 -xf cups-source.tar.gz
     --sysconfdir=/config
 make -j${CPUC}
 make install
+echo ${PREFIX}/lib/ > /etc/ld.so.conf.d/cups.conf
+ldconfig
 cd "${SOURCEDIR}"
 mkdir -p filters
 cd filters
