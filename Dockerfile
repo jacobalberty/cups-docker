@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG CUPS_VERSION=2.2.6
 ARG FILTERS_VERSION=1.17.9
 
-ENV PREFIX=/usr/local/cups
+ENV PREFIX=/usr/local/docker
 
 ADD build.sh ./build.sh
 
@@ -21,4 +21,4 @@ EXPOSE 631/tcp 631/udp
 ADD docker-entrypoint.sh ${PREFIX}/docker-entrypoint.sh
 RUN chmod +x ${PREFIX}/docker-entrypoint.sh
 
-ENTRYPOINT ${PREFIX}/docker-entrypoint.sh ${PREFIX}/sbin/cupsd -f
+ENTRYPOINT ${PREFIX}/docker-entrypoint.sh /usr/sbin/cupsd -f
