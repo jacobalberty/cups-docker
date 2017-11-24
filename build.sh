@@ -77,7 +77,6 @@ apt-get install -qy --no-install-recommends \
     poppler-utils
 mkdir -p "${SOURCEDIR}"
 cd "${SOURCEDIR}"
-rm -rf /home/equivs
 mkdir -p cups
 cd cups
 curl -o cups-source.tar.gz -L \
@@ -124,3 +123,5 @@ apt-get purge -qy --auto-remove \
     pkg-config
 rm -rf /var/lib/apt/lists/*
 
+echo /usr/local/cups/lib/ > /etc/ld.so.conf.d/cups.conf
+ldconfig
