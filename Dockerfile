@@ -6,6 +6,7 @@ ARG CUPS_VERSION=2.2.6
 ARG FILTERS_VERSION=1.17.9
 
 ENV PREFIX=/usr/local/docker
+ENV VOLUME=/config
 
 ADD build.sh ./build.sh
 
