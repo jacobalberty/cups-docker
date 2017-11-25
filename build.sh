@@ -127,3 +127,9 @@ cd /
 rm -rf "${SOURCEDIR}"
 apt-get purge -qy --auto-remove ${BUILD_DEPS}
 rm -rf /var/lib/apt/lists/*
+
+mkdir -p /usr/lib/cups/backend-available
+
+mv /usr/lib/cups/backend/parallel /usr/lib/cups/backend-available/
+mv /usr/lib/cups/backend/serial /usr/lib/cups/backend-available/
+mv /usr/lib/cups/backend/cups-brf /usr/lib/cups/backend-available/
