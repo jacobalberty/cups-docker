@@ -129,11 +129,12 @@ apt-get purge -qy --auto-remove ${BUILD_DEPS} equivs
 rm -rf /var/lib/apt/lists/*
 
 # save /etc/cups to recreate it if needed.
-mkdir -p ${PREFIX}/skel/cups
-mv /etc/cups ${PREFIX}/skel/cups/etc
+mkdir -p "${PREFIX}/skel/cups"
+mv /etc/cups "${PREFIX}/skel/cups/etc"
 
-# Use a symbolic link to redirect cups configuration files to the volume
-ln -s ${VOLUME}/etc /etc/cups
+# Use symbolic links to redirect a few standard cups directories to the volume
+ln -s "${VOLUME}/etc" /etc/cups
+ln -s "${VOLUME}/log" /var/log/cups
 
 # Remove backends that don't make sense in a container.
 mkdir -p /usr/lib/cups/backend-available
