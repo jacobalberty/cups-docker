@@ -28,4 +28,8 @@ fi
 if [ -d "/usr/local/docker/init.d" ]; then
     run-parts /usr/local/docker/init.d
 fi
+
+if [ -d ${VOLUME}/init.d ]; then
+    run-parts ${VOLUME}/init.d
+fi
 $@
