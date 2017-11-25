@@ -59,7 +59,6 @@ fakePkg "libcups2" "${CUPS_VERSION}"
 fakePkg "libcupsimage2" "${CUPS_VERSION}"
 fakePkg "cups-filters" "${FILTERS_VERSION}"
 fakePkg "libcupsfilters1" "${FILTERS_VERSION}"
-apt-get purge -qy --auto-remove equivs
 apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     ca-certificates \
     ghostscript \
@@ -126,7 +125,7 @@ make -j${CPUC}
 make install
 cd /
 rm -rf "${SOURCEDIR}"
-apt-get purge -qy --auto-remove ${BUILD_DEPS}
+apt-get purge -qy --auto-remove ${BUILD_DEPS} equivs
 rm -rf /var/lib/apt/lists/*
 
 mkdir -p /usr/lib/cups/backend-available
