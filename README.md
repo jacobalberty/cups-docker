@@ -11,7 +11,16 @@ If you have a suggestion for how to improve usability of this image, feel free t
 
 ### `/config`
 
-This volume contains the subfolder `etc` under which you would place all of your cups configuration files.
+This volume contains a couple subfolders.
+
+#### `/config/etc`
+This subfolder contains your cups configuration files.
+
+#### `/config/log`
+This subfolder contains your log files
+
+#### `/config/init.d` (Optional)
+This optional subfolder contains a set of scripts to be run before the cups daemon launches.
 
 ## Expose:
 
