@@ -102,6 +102,7 @@ tar --strip=1 -xf cups-source.tar.gz
     --with-cups-group=lp \
     --with-system-groups=lpadmin \
     --with-printcap=/var/run/cups/printcap \
+    --with-logdir=/config/log \
     --with-log-file-perm=0640 \
     --with-local_protocols='dnssd' \
     --with-systemd=/lib/systemd/system

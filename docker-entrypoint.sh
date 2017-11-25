@@ -32,4 +32,10 @@ fi
 if [ -d ${VOLUME}/init.d ]; then
     run-parts ${VOLUME}/init.d
 fi
+
+# Ensure logdir exists and is owned by the correct group
+if [[ ! -e "${VOLUME}/log" ]]; then
+    mkdir -p "${VOLUME}/log"
+    chgrp lp "${VOLUME}/log"
+fi
 $@
