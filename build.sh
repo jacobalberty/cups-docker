@@ -86,7 +86,6 @@ curl -o cups-source.tar.gz -L \
     "${CUPSURL}"
 tar --strip=1 -xf cups-source.tar.gz
 ./configure \
-    --sysconfdir=/config \
     --with-docdir=/usr/share/cups/doc-root \
     --localedir=/usr/share/cups/locale \
     --enable-libpaper \
@@ -127,6 +126,13 @@ cd /
 rm -rf "${SOURCEDIR}"
 apt-get purge -qy --auto-remove ${BUILD_DEPS} equivs
 rm -rf /var/lib/apt/lists/*
+
+# save /etc/cups to recreate it if needed.
+mkdir -p ${PREFIX}/skel/cups
+mv /etc/cups ${PREFIX}/skel/cups/etc
+
+# Use a symbolic link to redirect cups configuration files to the volume
+ln -s ${VOLUME}/etc /etc/cups
 
 # Remove backends that don't make sense in a container.
 mkdir -p /usr/lib/cups/backend-available
