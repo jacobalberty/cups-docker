@@ -51,6 +51,7 @@ BUILD_DEPS="
     make \
     pkg-config"
 
+groupadd lpadmin
 apt-get update
 apt-get install -qy --no-install-recommends equivs
 fakePkg "cups" "${CUPS_VERSION}"
