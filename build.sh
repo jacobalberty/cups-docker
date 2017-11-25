@@ -128,6 +128,7 @@ rm -rf "${SOURCEDIR}"
 apt-get purge -qy --auto-remove ${BUILD_DEPS} equivs
 rm -rf /var/lib/apt/lists/*
 
+# Remove backends that don't make sense in a container.
 mkdir -p /usr/lib/cups/backend-available
 
 mv /usr/lib/cups/backend/parallel /usr/lib/cups/backend-available/
