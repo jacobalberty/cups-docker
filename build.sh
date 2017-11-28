@@ -38,7 +38,7 @@ BUILD_DEPS="
     libfontconfig1-dev \
     libfreetype6-dev \
     libglib2.0-dev \
-    libgnutls28-dev\
+    libgnutls28-dev \
     libijs-dev \
     libjpeg62-turbo-dev \
     liblcms2-dev \
