@@ -25,6 +25,9 @@ file_env() {
 if [[ ! -e "${VOLUME}/etc/" ]]; then
     cp -R "${PREFIX}/skel/cups/etc" "${VOLUME}/"
 fi
+if [[ ! -e "${VOLUME}/state/" ]]; then
+    cp -a "${PREFIX}/skel/cups/state" "${VOLUME}/"
+fi
 if [ -d "/usr/local/docker/init.d" ]; then
     run-parts /usr/local/docker/init.d
 fi

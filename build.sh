@@ -105,7 +105,8 @@ tar --strip=1 -xf cups-source.tar.gz
     --with-logdir=/config/log \
     --with-log-file-perm=0640 \
     --with-local_protocols='dnssd' \
-    --with-systemd=/lib/systemd/system
+    --with-systemd=/lib/systemd/system \
+    --localstatedir=${VOLUME}/state
 make -j${CPUC}
 make install
 cd "${SOURCEDIR}"
@@ -131,6 +132,7 @@ rm -rf /var/lib/apt/lists/*
 # save /etc/cups to recreate it if needed.
 mkdir -p "${PREFIX}/skel/cups"
 mv /etc/cups "${PREFIX}/skel/cups/etc"
+mv "${VOLUME}/state" "${PREFIX}/skel/cups/state"
 
 # Use symbolic links to redirect a few standard cups directories to the volume
 ln -s "${VOLUME}/etc" /etc/cups
