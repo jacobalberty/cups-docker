@@ -49,7 +49,8 @@ BUILD_DEPS="
     libqpdf-dev \
     libtiff5-dev \
     make \
-    pkg-config"
+    pkg-config \
+    quilt"
 
 groupadd lpadmin
 apt-get update
@@ -84,7 +85,9 @@ mkdir -p cups
 cd cups
 curl -o cups-source.tar.gz -L \
     "${CUPSURL}"
+mv /home/patches/cups ./patches
 tar --strip=1 -xf cups-source.tar.gz
+quilt push -a
 ./configure \
     --with-docdir=/usr/share/cups/doc-root \
     --localedir=/usr/share/cups/locale \

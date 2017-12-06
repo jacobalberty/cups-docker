@@ -8,6 +8,8 @@ ARG FILTERS_VERSION=1.17.9
 ENV PREFIX=/usr/local/docker
 ENV VOLUME=/config
 
+COPY patches /home/patches
+
 ADD build.sh ./build.sh
 
 RUN chmod +x ./build.sh && \
