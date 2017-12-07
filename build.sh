@@ -135,7 +135,6 @@ rm -rf /var/lib/apt/lists/*
 # save /etc/cups to recreate it if needed.
 mkdir -p "${PREFIX}/skel/cups"
 mv /etc/cups "${PREFIX}/skel/cups/etc"
-mv "${VOLUME}/state" "${PREFIX}/skel/cups/state"
 
 # Use symbolic links to redirect a few standard cups directories to the volume
 ln -s "${VOLUME}/etc" /etc/cups
