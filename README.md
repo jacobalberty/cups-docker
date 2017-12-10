@@ -10,13 +10,15 @@ If you have a suggestion for how to improve usability of this image, feel free t
 
 ## Drivers
 
-CUPS is pretty useless without drivers. Unfortunately it does not come with many drivers in the default install. Your best bet for getting drivers working is to create a dockerfile with this image as the FROM source and install your drivers that way. I am working on a few tools to help make building or installing other drivers easier.
+CUPS is pretty useless without drivers. Unfortunately it does not come with many drivers in the default install.
+Your best bet for getting drivers working is to create a dockerfile with this image as the FROM source and install your drivers that way.
+To make getting drivers installed easier I will include shell scripts in /usr/local/docker/share/drivers to handle installation of common drivers.
+If you manage to get a new driver working please post a description of how you did it on the github issue tracker, or submit a PR.
 
 ### hplip
 
-I am able to build and install hplip under this image just fine. The debian packages for hplip may work as I do try to provide all of the dependencies to dpkg, I just have not tested that.
-I have included a [Dockerfile](https://github.com/jacobalberty/cups-docker/blob/master/examples/hplip/Dockerfile) that installs hplip from source. It does not automatically install the binary plugin.
-You will need to use `docker exec` (or the equivalent for your environment) to enter the image and run the `hp-plugin` script in order for the image to be fully functional.
+hplip can be installed by running /usr/local/docker/share/drivers/hplip.sh in the image, you must then follow up with running hp-plugin
+and accepting the license agreement for a fully working install.
 
 ## Volumes:
 
