@@ -10,8 +10,8 @@
 #
 # TODO: Optionally detect if HPLIP is already installed and refuse to install a second time
 
-# Current version at this time is 3.17.10
-HPLIP_VERSION="${HPLIP_VERSION:-3.17.10}"
+# Current version at this time is 3.17.11
+HPLIP_VERSION="${HPLIP_VERSION:-3.17.11}"
 
 BUILD_DEPS="\
     build-essential \
