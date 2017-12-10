@@ -22,6 +22,10 @@ VOLUME ["/config"]
 EXPOSE 631/tcp 631/udp
 
 ADD docker-entrypoint.sh ${PREFIX}/docker-entrypoint.sh
-RUN chmod +x ${PREFIX}/docker-entrypoint.sh
+ADD drivers ${PREFIX}/share/drivers
+RUN chmod +x \
+    ${PREFIX}/docker-entrypoint.sh \
+    ${PREFIX}/share/drivers/*.sh
+
 
 ENTRYPOINT ${PREFIX}/docker-entrypoint.sh /usr/sbin/cupsd -f
