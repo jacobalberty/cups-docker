@@ -16,6 +16,7 @@ HPLIP_VERSION="${HPLIP_VERSION:-3.17.11}"
 BUILD_DEPS="\
     build-essential \
     curl \
+    gawk \
     libdbus-1-dev \
     libjpeg62-turbo-dev \
     libsnmp-dev \
