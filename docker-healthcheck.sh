@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Simple docker heatlh check script
+#
+# Compare output of lpstat -r to see if scheduler is running
+# Might consider outputing some debugging information if this fails.
 
-# The output of lpstat isn't terribly useful for debugging so let's just discard it all for now.
-lpstat > /dev/null 2>&1
+[[ "$(lpstat -r)"  == "scheduler is running" ]]
+exit $?
