@@ -22,10 +22,13 @@ VOLUME ["/config"]
 EXPOSE 631/tcp 631/udp
 
 ADD docker-entrypoint.sh ${PREFIX}/bin/docker-entrypoint.sh
+ADD docker-healthcheck.sh ${PREFIX}/bin/docker-healthcheck.sh
 ADD drivers ${PREFIX}/share/drivers
 RUN chmod +x \
     ${PREFIX}/bin/docker-entrypoint.sh \
+    ${PREFIX}/bin/docker-healthcheck.sh \
     ${PREFIX}/share/drivers/*.sh
 
+HEALTHCHECK CMD ${PREFIX}/bin/docker-healthcheck.sh
 
 ENTRYPOINT ${PREFIX}/bin/docker-entrypoint.sh /usr/sbin/cupsd -f
