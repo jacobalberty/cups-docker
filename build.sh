@@ -29,6 +29,8 @@ EOF
 }
 
 BUILD_DEPS="
+    autoconf \
+    build-essential \
     curl \
     dpkg-dev \
     g++ \
@@ -41,16 +43,22 @@ BUILD_DEPS="
     libgnutls28-dev \
     libijs-dev \
     libjpeg62-turbo-dev \
+    libkrb5-dev \
     liblcms2-dev \
+    libnss-mdns \
+    libpam-dev \
     libpng-dev \
     libpoppler-cpp-dev \
     libpoppler-dev \
     libpoppler-private-dev \
     libqpdf-dev \
+    libsystemd-dev \
     libtiff5-dev \
+    libusb-1.0-0-dev \
     make \
     pkg-config \
-    quilt"
+    quilt \
+    zlib1g-dev"
 
 groupadd lpadmin
 apt-get update
