@@ -2,7 +2,7 @@ FROM debian:stretch-slim
 MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG CUPS_VERSION=2.3b3
+ARG CUPS_VERSION=2.3b4
 ARG FILTERS_VERSION=1.20.1
 
 ENV PREFIX=/usr/local/docker
