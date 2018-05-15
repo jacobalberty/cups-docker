@@ -40,12 +40,12 @@ BUILD_DEPS="
 groupadd lpadmin
 apt-get update
 apt-get install -qy --no-install-recommends equivs
-${PREFIX}/fakePkg.sh "cups" "${CUPS_VERSION}"
-${PREFIX}/fakePkg.sh "cups-client" "${CUPS_VERSION}"
-${PREFIX}/fakePkg.sh "libcups2" "${CUPS_VERSION}"
-${PREFIX}/fakePkg.sh "libcupsimage2" "${CUPS_VERSION}"
-${PREFIX}/fakePkg.sh "cups-filters" "${FILTERS_VERSION}"
-${PREFIX}/fakePkg.sh "libcupsfilters1" "${FILTERS_VERSION}"
+${PREFIX}/bin/fakePkg.sh "cups" "${CUPS_VERSION}"
+${PREFIX}/bin/fakePkg.sh "cups-client" "${CUPS_VERSION}"
+${PREFIX}/bin/fakePkg.sh "libcups2" "${CUPS_VERSION}"
+${PREFIX}/bin/fakePkg.sh "libcupsimage2" "${CUPS_VERSION}"
+${PREFIX}/bin/fakePkg.sh "cups-filters" "${FILTERS_VERSION}"
+${PREFIX}/bin/fakePkg.sh "libcupsfilters1" "${FILTERS_VERSION}"
 apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     ca-certificates \
     ghostscript \
