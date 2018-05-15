@@ -5,29 +5,6 @@ CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 CUPSURL=https://github.com/apple/cups/releases/download/v${CUPS_VERSION}/cups-${CUPS_VERSION}-source.tar.gz
 FILTERSURL=http://openprinting.org/download/cups-filters/cups-filters-${FILTERS_VERSION}.tar.gz
 
-fakePkg() {
-    pkg="${1}"
-    ver="${2}"
-    tmpdir=$(mktemp -d)
-    cwd=$(pwd)
-    cd "${tmpdir}"
-cat > "${pkg}" << EOF
-Section: misc
-Priority: optional
-Standards-Version: 3.9.2
-
-Package: ${pkg}
-Version: ${ver}
-Maintainer: Jacob Alberty <jacob.alberty@foundigital.com>
-Architecture: all
-Description: Blocking ${pkg} dependency
-EOF
-    equivs-build ${pkg}
-    dpkg -i *.deb
-    cd "${cwd}"
-    rm -rf "${tmpdir}"
-}
-
 BUILD_DEPS="
     autoconf \
     build-essential \
@@ -63,12 +40,12 @@ BUILD_DEPS="
 groupadd lpadmin
 apt-get update
 apt-get install -qy --no-install-recommends equivs
-fakePkg "cups" "${CUPS_VERSION}"
-fakePkg "cups-client" "${CUPS_VERSION}"
-fakePkg "libcups2" "${CUPS_VERSION}"
-fakePkg "libcupsimage2" "${CUPS_VERSION}"
-fakePkg "cups-filters" "${FILTERS_VERSION}"
-fakePkg "libcupsfilters1" "${FILTERS_VERSION}"
+${PREFIX}/fakePkg.sh "cups" "${CUPS_VERSION}"
+${PREFIX}/fakePkg.sh "cups-client" "${CUPS_VERSION}"
+${PREFIX}/fakePkg.sh "libcups2" "${CUPS_VERSION}"
+${PREFIX}/fakePkg.sh "libcupsimage2" "${CUPS_VERSION}"
+${PREFIX}/fakePkg.sh "cups-filters" "${FILTERS_VERSION}"
+${PREFIX}/fakePkg.sh "libcupsfilters1" "${FILTERS_VERSION}"
 apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     ca-certificates \
     ghostscript \
