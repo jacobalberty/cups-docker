@@ -65,6 +65,7 @@ groupadd lpadmin
 apt-get update
 apt-get install -qy --no-install-recommends equivs
 fakePkg "cups" "${CUPS_VERSION}"
+fakePkg "cups-client" "${CUPS_VERSION}"
 fakePkg "libcups2" "${CUPS_VERSION}"
 fakePkg "libcupsimage2" "${CUPS_VERSION}"
 fakePkg "cups-filters" "${FILTERS_VERSION}"
