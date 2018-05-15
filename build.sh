@@ -41,6 +41,7 @@ BUILD_DEPS="
     libfreetype6-dev \
     libglib2.0-dev \
     libgnutls28-dev \
+    libgssapi-krb5-2 \
     libijs-dev \
     libjpeg62-turbo-dev \
     libkrb5-dev \
