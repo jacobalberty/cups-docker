@@ -11,8 +11,9 @@ ENV VOLUME=/config
 COPY patches /home/patches
 
 ADD build.sh ./build.sh
+ADD fakePkg.sh ${PREFIX}/bin/fakePkg.sh
 
-RUN chmod +x ./build.sh && \
+RUN chmod +x ./build.sh ${PREFIX}/bin/fakePkg.sh && \
     sync && \
     ./build.sh && \
     rm -f ./build.sh
