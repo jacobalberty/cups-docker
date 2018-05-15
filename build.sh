@@ -77,6 +77,7 @@ apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     libfreetype6 \
     libgnutls-openssl27 \
     libgnutlsxx28 \
+    libgssapi-krb5-2 \
     libijs-0.35 \
     libjpeg62-turbo \
     liblcms2-2 \
