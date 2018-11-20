@@ -110,7 +110,7 @@ make install
 cd "${SOURCEDIR}"
 mkdir -p filters
 cd filters
-curl -o filters-source.tar.gz -l "${FILTERSURL}"
+curl -o filters-source.tar.gz -L "${FILTERSURL}"
 tar --strip=1 -xf filters-source.tar.gz
 ./configure \
     --with-shell=/bin/sh \
