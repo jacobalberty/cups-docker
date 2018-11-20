@@ -3,7 +3,7 @@ MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CUPS_VERSION=2.3b5
-ARG FILTERS_VERSION=1.20.3
+ARG FILTERS_VERSION=1.20.4
 
 ENV PREFIX=/usr/local/docker
 ENV VOLUME=/config
