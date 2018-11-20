@@ -4,7 +4,7 @@ SOURCEDIR=/home/source
 CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 CUPSURL=https://github.com/apple/cups/releases/download/v${CUPS_VERSION}/cups-${CUPS_VERSION}-source.tar.gz
 FILTERSURL=http://openprinting.org/download/cups-filters/cups-filters-${FILTERS_VERSION}.tar.gz
-
+QPDFURL=https://github.com/qpdf/qpdf/releases/download/release-qpdf-${QPDF_VERSION}/qpdf-${QPDF_VERSION}.tar.gz
 BUILD_DEPS="
     autoconf \
     build-essential \
@@ -28,7 +28,6 @@ BUILD_DEPS="
     libpoppler-cpp-dev \
     libpoppler-dev \
     libpoppler-private-dev \
-    libqpdf-dev \
     libsystemd-dev \
     libtiff5-dev \
     libusb-1.0-0-dev \
@@ -62,7 +61,6 @@ apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     libpng16-16 \
     libpoppler64 \
     libpoppler-cpp0v5 \
-    libqpdf17 \
     libtiff5 \
     mupdf-tools \
     poppler-utils
@@ -99,6 +97,16 @@ quilt push -a
     --localstatedir=${VOLUME}/state
 make -j${CPUC}
 make install
+
+cd "${SOURCEDIR}"
+mkdir -p qpdf
+cd qpdf
+curl -o qpdf-source.tar.gz -L "${QPDFURL}"
+tar --strip=1 -xf qpdf-source.tar.gz
+./configure
+make -j${CPUC}
+make install
+
 cd "${SOURCEDIR}"
 mkdir -p filters
 cd filters
@@ -114,6 +122,7 @@ tar --strip=1 -xf filters-source.tar.gz
     --with-test-font-path=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
 make -j${CPUC}
 make install
+
 cd /
 rm -rf "${SOURCEDIR}"
 apt-get purge -qy --auto-remove ${BUILD_DEPS} equivs
