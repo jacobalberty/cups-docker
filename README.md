@@ -20,6 +20,12 @@ If you manage to get a new driver working please post a description of how you d
 hplip can be installed by running /usr/local/docker/share/drivers/hplip.sh in the image, you must then follow up with running hp-plugin
 and accepting the license agreement for a fully working install.
 
+### foomatic
+
+foomatic can be installed by running /usr/local/docker/share/drivers/foomatic.sh in the image. This will only install foomatic-filters and foomatic-db-filters.
+To install foomatic-db and foomatic-db-nonfree you will need to follow up with /usr/local/docker/share/drivers/foomatic-db.sh. Eventually once I've tested it and
+am satisfied with the foomatic-filters install I may move foomatic-filters into the main buildscript and combine the three db packages into a single install script.
+
 ## Volumes:
 
 ### `/config`
