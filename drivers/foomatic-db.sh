@@ -25,7 +25,7 @@ curl -L -o foomatic-db-nonfree.tar.gz \
 mkdir -p /home/source/foomatic/db
 
 cd /home/source/foomatic/db
-tar --strip=1 -xf ../foomatic-db.tar.gz
+tar --strip=1 -xf ../foomatic-db.tar.xz
 ./configure
 make install
 
