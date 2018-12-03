@@ -17,8 +17,8 @@ fakePkg() {
     Architecture: all
     Description: Blocking ${pkg} dependency
 EOF
-echo    equivs-build ${pkg}
-echo    dpkg -i *.deb
+    equivs-build ${pkg}
+    dpkg -i *.deb
     cd "${cwd}"
     rm -rf "${tmpdir}"
 }
