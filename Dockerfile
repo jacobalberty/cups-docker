@@ -13,6 +13,15 @@ COPY patches /home/patches
 
 COPY build.sh ./build.sh
 COPY fakePkg.sh ${PREFIX}/bin/fakePkg.sh
+COPY docker-entrypoint.sh ${PREFIX}/bin/docker-entrypoint.sh
+COPY docker-healthcheck.sh ${PREFIX}/bin/docker-healthcheck.sh
+COPY drivers ${PREFIX}/share/drivers
+COPY functions ${PREFIX}/functions
+RUN chmod +x \
+    ${PREFIX}/bin/docker-entrypoint.sh \
+    ${PREFIX}/bin/docker-healthcheck.sh \
+    ${PREFIX}/share/drivers/*.sh \
+    ${PREFIX}/functions
 
 RUN chmod +x ./build.sh ${PREFIX}/bin/fakePkg.sh && \
     sync && \
@@ -23,15 +32,6 @@ VOLUME ["/config"]
 
 EXPOSE 631/tcp 631/udp
 
-COPY docker-entrypoint.sh ${PREFIX}/bin/docker-entrypoint.sh
-COPY docker-healthcheck.sh ${PREFIX}/bin/docker-healthcheck.sh
-COPY drivers ${PREFIX}/share/drivers
-COPY functions ${PREFIX}/functions
-RUN chmod +x \
-    ${PREFIX}/bin/docker-entrypoint.sh \
-    ${PREFIX}/bin/docker-healthcheck.sh \
-    ${PREFIX}/share/drivers/*.sh \
-    ${PREFIX}/functions
 
 HEALTHCHECK CMD ${PREFIX}/bin/docker-healthcheck.sh
 
