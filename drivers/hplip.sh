@@ -13,11 +13,19 @@
 # Pinning to 3.18.6 for now because newer versions of hplip are not working properly.
 # I am not sure if there is an issue with this image or hplip itself, but I can not get stable printing
 # out of newer versions in my own usage.
+source ${PREFIX}/functions
+
+if (isInst hplip); then
+    echo "hplip is already installed"
+    exit
+fi
+
 HPLIP_VERSION="${HPLIP_VERSION:-3.18.6}"
 
 BUILD_DEPS="\
     build-essential \
     curl \
+    equivs \
     gawk \
     libdbus-1-dev \
     libjpeg62-turbo-dev \
@@ -77,6 +85,8 @@ PYTHON="$(which python)" \
 
 make -j$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 make install
+
+fakePkg hplip ${HPLIP_VERSION}
 
 if [ "${cleanup:-true}" = true ]; then
     cd /

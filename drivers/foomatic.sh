@@ -6,6 +6,13 @@
 # `FOOMATIC_DB_ENGINE_VERSION` (Default: 4.0.13) - Version of foomatic-db-engine to install
 # `cleanup` (Default: true) - Remove build dependencies and source dir
 
+source ${PREFIX}/functions
+
+if (isInst foomatic-filters || isInst foomatic-db-engine); then
+    echo "foomatic-filters or foomatic-db-engine is already installed"
+    exit
+fi
+
 FOOMATIC_FILTERS_VERSION="${FOOMATIC_FILTERS_VERSION:-4.0.17}"
 FOOMATIC_DB_ENGINE_VERSION="${FOOMATIC_DB_ENGINE_VERSION:-4.0.13}"
 
@@ -14,6 +21,7 @@ CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 BUILD_DEPS="\
     build-essential \
     curl \
+    equivs \
     file \
     libdbus-1-dev \
     libxml2-dev \
@@ -42,6 +50,7 @@ tar --strip=1 -xf ../foomatic-filters.tar.gz
 ./configure
 make -j${CPUC}
 make install
+fakePkg foomatic-filters ${FOOMATIC_FILTERS_VERSION}
 
 mkdir -p /home/source/foomatic/db-engine
 
@@ -50,7 +59,7 @@ tar --strip=1 -xf ../foomatic-db-engine.tar.gz
 ./configure
 make -j${CPUC}
 make install
-
+fakePkg foomatic-db-engine ${FOOMATIC_DB_ENGINE_VERSION}
 
 cd /home/source/foomatic
 
