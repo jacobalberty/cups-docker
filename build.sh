@@ -71,9 +71,11 @@ mkdir -p cups
 cd cups
 curl -o cups-source.tar.gz -L \
     "${CUPSURL}"
-#mv /home/patches/cups ./patches
 tar --strip=1 -xf cups-source.tar.gz
-#quilt push -a
+if [ -f /home/patches/cups/series ]; then
+    mv /home/patches/cups ./patches
+    quilt push -a
+fi
 ./configure \
     --with-docdir=/usr/share/cups/doc-root \
     --localedir=/usr/share/cups/locale \
