@@ -5,6 +5,7 @@ CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 CUPSURL=https://github.com/apple/cups/releases/download/v${CUPS_VERSION}/cups-${CUPS_VERSION}-source.tar.gz
 FILTERSURL=http://openprinting.org/download/cups-filters/cups-filters-${FILTERS_VERSION}.tar.gz
 QPDFURL=https://github.com/qpdf/qpdf/releases/download/release-qpdf-${QPDF_VERSION}/qpdf-${QPDF_VERSION}.tar.gz
+
 BUILD_DEPS="
     autoconf \
     build-essential \
@@ -70,9 +71,11 @@ mkdir -p cups
 cd cups
 curl -o cups-source.tar.gz -L \
     "${CUPSURL}"
-mv /home/patches/cups ./patches
 tar --strip=1 -xf cups-source.tar.gz
-quilt push -a
+if [ -f /home/patches/cups/series ]; then
+    mv /home/patches/cups ./patches
+    quilt push -a
+fi
 ./configure \
     --with-docdir=/usr/share/cups/doc-root \
     --localedir=/usr/share/cups/locale \
