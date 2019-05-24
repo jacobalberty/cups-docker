@@ -2,8 +2,8 @@ FROM debian:stretch-slim
 MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG CUPS_VERSION=2.3b7
-ARG FILTERS_VERSION=1.22.1
+ARG CUPS_VERSION=2.3rc1
+ARG FILTERS_VERSION=1.23.1
 ARG QPDF_VERSION=8.4.0
 
 ENV PREFIX=/usr/local/docker
