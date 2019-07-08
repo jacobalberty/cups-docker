@@ -3,7 +3,7 @@ MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CUPS_VERSION=2.2.11
-ARG FILTERS_VERSION=1.25.0
+ARG FILTERS_VERSION=1.25.1
 ARG QPDF_VERSION=8.4.0
 
 ENV PREFIX=/usr/local/docker
