@@ -2,11 +2,21 @@
 
 ## Description
 
-This is a WIP docker image. While it is still under active development with the internals changing on a regular basis it is useable now. I use it as my print server at work right now.
+This image provides builds of cups that include a few additional features to make it easier to install and maintain within docker
 
 This image is a bit different from the other cups images on the docker hub in that it does not just use distro packages. I am building cups and cups-filters from source. This means as new versions of cups come out I can update to them quicker. I can also tag out individual releases with this so you can specify your cups version.
 
 If you have a suggestion for how to improve usability of this image, feel free to post on the [github issue tracker](https://github.com/jacobalberty/cups-docker/issues).
+
+## Buster
+
+I have added an experimental buster tag for the current stable and put the release candidates onto buster. 
+I will be moving my own installations over to buster asap, once I am confident the stable versions work well I will move the `latest` tag to buster.
+
+## TODO
+
+Things like users are hacky at best and the default configuration for cups does not seem to be particularly suited to docker.
+I am accepting any fixes (documentation, patches to source, or patches for the installed configuration) to improve usability.
 
 ## Drivers
 
