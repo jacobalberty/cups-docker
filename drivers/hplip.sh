@@ -37,6 +37,7 @@ BUILD_DEPS="\
 DEPS="\
     avahi-daemon \
     dbus \
+    gpg \
     libsnmp30 \
     libusb-1.0-0 \
     python \
