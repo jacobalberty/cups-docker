@@ -13,6 +13,11 @@ If you have a suggestion for how to improve usability of this image, feel free t
 I have added an experimental buster tag for the current stable and put the release candidates onto buster. 
 I will be moving my own installations over to buster asap, once I am confident the stable versions work well I will move the `latest` tag to buster.
 
+### Current issues with Buster
+
+dnssd discovery is flakey with debian buster right now. The buster tag works well with ip addresses or regular hostnames, but dnssd discovered printers intermittently
+drop off.
+
 ## TODO
 
 Things like users are hacky at best and the default configuration for cups does not seem to be particularly suited to docker.
