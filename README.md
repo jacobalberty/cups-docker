@@ -8,15 +8,12 @@ This image is a bit different from the other cups images on the docker hub in th
 
 If you have a suggestion for how to improve usability of this image, feel free to post on the [github issue tracker](https://github.com/jacobalberty/cups-docker/issues).
 
-## Buster
-
-I have added an experimental buster tag for the current stable and put the release candidates onto buster. 
-I will be moving my own installations over to buster asap, once I am confident the stable versions work well I will move the `latest` tag to buster.
-
 ### Current issues with Buster
 
-dnssd discovery is flakey with debian buster right now. The buster tag works well with ip addresses or regular hostnames, but dnssd discovered printers intermittently
-drop off.
+As of 2.3 this image is on buster.
+dnssd discovery is flakey with debian buster right now. It works well with ip addresses or regular hostnames, but dnssd discovered printers intermittently
+drop off. It is likely fixable with some changes to the avahi configuration. but avahi isn't part of this by default anyway, it's only installed if you install
+the hplip drivers.
 
 ## TODO
 
