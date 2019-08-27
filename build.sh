@@ -60,7 +60,7 @@ apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     libjpeg62-turbo \
     liblcms2-2 \
     libpng16-16 \
-    libpoppler64 \
+    libpoppler82 \
     libpoppler-cpp0v5 \
     libtiff5 \
     mupdf-tools \
