@@ -2,7 +2,7 @@ FROM debian:stretch-slim
 MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG CUPS_VERSION=2.2.12
+ARG CUPS_VERSION=2.2.13
 ARG FILTERS_VERSION=1.25.3
 ARG QPDF_VERSION=8.4.0
 
