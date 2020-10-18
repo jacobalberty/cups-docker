@@ -17,11 +17,13 @@ COPY docker-entrypoint.sh ${PREFIX}/bin/docker-entrypoint.sh
 COPY docker-healthcheck.sh ${PREFIX}/bin/docker-healthcheck.sh
 COPY drivers ${PREFIX}/share/drivers
 COPY functions ${PREFIX}/functions
+COPY pre_build /usr/local/docker/pre_build
 RUN chmod +x \
     ${PREFIX}/bin/docker-entrypoint.sh \
     ${PREFIX}/bin/docker-healthcheck.sh \
     ${PREFIX}/share/drivers/*.sh \
-    ${PREFIX}/functions
+    ${PREFIX}/functions \
+ && chmod -R +x /usr/local/docker/pre_build
 
 RUN chmod +x ./build.sh ${PREFIX}/bin/fakePkg.sh && \
     sync && \

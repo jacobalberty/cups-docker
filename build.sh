@@ -67,6 +67,11 @@ apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     poppler-utils
 mkdir -p "${SOURCEDIR}"
 cd "${SOURCEDIR}"
+
+if [ -d "/usr/local/docker/pre_build/$(dpkg --print-architecture)" ]; then
+    find "/usr/local/docker/pre_build/$(dpkg --print-architecture)" -type f -exec '{}' \;
+fi
+
 mkdir -p cups
 cd cups
 curl -o cups-source.tar.gz -L \
