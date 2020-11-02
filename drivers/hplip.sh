@@ -27,6 +27,7 @@ BUILD_DEPS="\
     curl \
     equivs \
     gawk \
+    libavahi-core-dev \
     libdbus-1-dev \
     libjpeg62-turbo-dev \
     libsnmp-dev \
