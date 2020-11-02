@@ -28,6 +28,7 @@ BUILD_DEPS="\
     equivs \
     gawk \
     libavahi-core-dev \
+    libavahi-client-dev \
     libdbus-1-dev \
     libjpeg62-turbo-dev \
     libsnmp-dev \
