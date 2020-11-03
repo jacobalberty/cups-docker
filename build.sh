@@ -49,6 +49,7 @@ ${PREFIX}/bin/fakePkg.sh "libcupsfilters1" "${FILTERS_VERSION}"
 apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     ca-certificates \
     ghostscript \
+    libatomic1 \
     libavahi-client3 \
     libavahi-glib1 \
     libfontconfig1 \
