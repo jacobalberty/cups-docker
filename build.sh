@@ -2,7 +2,7 @@
 set -e
 SOURCEDIR=/home/source
 CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
-CUPSURL=https://github.com/apple/cups/releases/download/v${CUPS_VERSION}/cups-${CUPS_VERSION}-source.tar.gz
+CUPSURL=https://github.com/openprinting/cups/releases/download/v${CUPS_VERSION}/cups-${CUPS_VERSION}-source.tar.gz
 FILTERSURL=http://openprinting.org/download/cups-filters/cups-filters-${FILTERS_VERSION}.tar.gz
 QPDFURL=https://github.com/qpdf/qpdf/releases/download/release-qpdf-${QPDF_VERSION}/qpdf-${QPDF_VERSION}.tar.gz
 
