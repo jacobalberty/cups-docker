@@ -34,17 +34,17 @@ BUILD_DEPS="\
     libsnmp-dev \
     libssl-dev \
     libusb-1.0-0-dev \
-    python-dev"
+    python-dev-is-python3"
 
 DEPS="\
     avahi-daemon \
     dbus \
     gpg \
-    libsnmp30 \
+    libsnmp40t64 \
     libusb-1.0-0 \
-    python \
-    python-dbus \
-    python-gobject \
+    python-is-python3 \
+    python3-dbus \
+    python3-gi \
     wget"
 
 

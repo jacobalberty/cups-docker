@@ -1,10 +1,11 @@
-FROM debian:buster-slim
-MAINTAINER Jacob Alberty <jacob.alberty@foundigital.com>
+FROM debian:trixie-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG CUPS_VERSION=2.4.2
-ARG FILTERS_VERSION=1.28.15
-ARG QPDF_VERSION=10.6.3
+ARG CUPS_VERSION=2.4.14
+ARG LIBPPD_VERSION=2.1.1
+ARG LIBCUPSFILTERS_VERSION=2.1.1
+ARG FILTERS_VERSION=2.0.1
+ARG QPDF_VERSION=12.2.0
 
 ENV PREFIX=/usr/local/docker
 ENV VOLUME=/config
@@ -37,4 +38,4 @@ EXPOSE 631/tcp 631/udp
 
 HEALTHCHECK CMD ${PREFIX}/bin/docker-healthcheck.sh
 
-ENTRYPOINT ${PREFIX}/bin/docker-entrypoint.sh /usr/sbin/cupsd -f
+ENTRYPOINT ["/usr/local/docker/bin/docker-entrypoint.sh", "/usr/sbin/cupsd", "-f"]
