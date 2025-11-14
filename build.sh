@@ -3,18 +3,22 @@ set -e
 SOURCEDIR=/home/source
 CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 CUPSURL=https://github.com/openprinting/cups/releases/download/v${CUPS_VERSION}/cups-${CUPS_VERSION}-source.tar.gz
-FILTERSURL=http://openprinting.org/download/cups-filters/cups-filters-${FILTERS_VERSION}.tar.gz
-QPDFURL=https://github.com/qpdf/qpdf/releases/download/release-qpdf-${QPDF_VERSION}/qpdf-${QPDF_VERSION}.tar.gz
+LIBPPDURL=https://github.com/OpenPrinting/libppd/releases/download/${LIBPPD_VERSION}/libppd-${LIBPPD_VERSION}.tar.gz
+LIBCUPSFILTERSURL=https://github.com/OpenPrinting/libcupsfilters/releases/download/${LIBCUPSFILTERS_VERSION}/libcupsfilters-${LIBCUPSFILTERS_VERSION}.tar.gz
+FILTERSURL=https://github.com/OpenPrinting/cups-filters/releases/download/${FILTERS_VERSION}/cups-filters-${FILTERS_VERSION}.tar.gz
+QPDFURL=https://github.com/qpdf/qpdf/releases/download/v${QPDF_VERSION}/qpdf-${QPDF_VERSION}.tar.gz
 
 BUILD_DEPS="
     autoconf \
     build-essential \
     curl \
+    cmake \
     dpkg-dev \
     g++ \
     gcc \
     libavahi-client-dev \
     libavahi-glib-dev \
+    libexif-dev \
     libfontconfig1-dev \
     libfreetype6-dev \
     libglib2.0-dev \
@@ -52,18 +56,19 @@ apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     libatomic1 \
     libavahi-client3 \
     libavahi-glib1 \
+    libexif12 \
     libfontconfig1 \
     libfreetype6 \
-    libgnutls-openssl27 \
-    libgnutlsxx28 \
+    libgnutls-openssl27t64 \
+    libgnutls30t64 \
     libgssapi-krb5-2 \
     libijs-0.35 \
     libjpeg62-turbo \
     liblcms2-2 \
     libpng16-16 \
-    libpoppler82 \
-    libpoppler-cpp0v5 \
-    libtiff5 \
+    libpoppler147 \
+    libpoppler-cpp2 \
+    libtiff6 \
     mupdf-tools \
     poppler-utils
 mkdir -p "${SOURCEDIR}"
@@ -112,7 +117,37 @@ mkdir -p qpdf
 cd qpdf
 curl -o qpdf-source.tar.gz -L "${QPDFURL}"
 tar --strip=1 -xf qpdf-source.tar.gz
-./configure
+cmake -S . -B build -DCI_MODE=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+      -DREQUIRE_CRYPTO_GNUTLS=1
+cmake --build build --parallel -j"${CPUC}" --target libqpdf libqpdf_static
+cmake --install build --component lib
+cmake --install build --component dev
+
+cd "${SOURCEDIR}"
+mkdir -p libcupsfilters
+cd libcupsfilters
+curl -o libcupsfilters-source.tar.gz -L "${LIBCUPSFILTERSURL}"
+tar --strip=1 -xf libcupsfilters-source.tar.gz
+./configure \
+    --with-shell=/bin/sh \
+    --libdir=/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH) \
+    --mandir=/usr/share/man \
+    --enable-static \
+    --with-test-font-path=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+make -j${CPUC}
+make install
+
+cd "${SOURCEDIR}"
+mkdir -p libppd
+cd libppd
+curl -o libppd-source.tar.gz -L "${LIBPPDURL}"
+tar --strip=1 -xf libppd-source.tar.gz
+./configure \
+    --with-shell=/bin/sh \
+    --libdir=/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH) \
+    --mandir=/usr/share/man \
+    --enable-static \
+    --with-test-font-path=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
 make -j${CPUC}
 make install
 
@@ -150,4 +185,4 @@ mkdir -p /usr/lib/cups/backend-available
 
 mv /usr/lib/cups/backend/parallel /usr/lib/cups/backend-available/
 mv /usr/lib/cups/backend/serial /usr/lib/cups/backend-available/
-mv /usr/lib/cups/backend/cups-brf /usr/lib/cups/backend-available/
+#mv /usr/lib/cups/backend/cups-brf /usr/lib/cups/backend-available/
