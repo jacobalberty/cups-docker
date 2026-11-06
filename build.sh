@@ -24,6 +24,7 @@ BUILD_DEPS="
     libglib2.0-dev \
     libgnutls28-dev \
     libijs-dev \
+    libjxl-dev \
     libjpeg62-turbo-dev \
     libkrb5-dev \
     liblcms2-dev \
@@ -63,6 +64,7 @@ apt-get install -qy --no-install-recommends ${BUILD_DEPS} \
     libgnutls30t64 \
     libgssapi-krb5-2 \
     libijs-0.35 \
+    libjxl0.11 \
     libjpeg62-turbo \
     liblcms2-2 \
     libpng16-16 \
