@@ -2,6 +2,8 @@ FROM debian:trixie-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# CUPS_VERSION is the base of the image version: releases are tagged
+# v<CUPS_VERSION>, then v<CUPS_VERSION>-N for later image changes.
 # renovate: datasource=github-releases depName=OpenPrinting/cups extractVersion=^v(?<version>.+)$
 ARG CUPS_VERSION=2.4.20
 # renovate: datasource=github-releases depName=OpenPrinting/libppd
