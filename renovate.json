@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "customManagers:dockerfileVersions"
+  ],
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "description": "Stay on libcupsfilters 2.1.x: upstream marks 2.2.0/2.2.1 as regressed by the QPDF->PDFio transition and recommends 2.1.x. Lift once a fixed 2.2.x ships.",
+      "matchPackageNames": [
+        "OpenPrinting/libcupsfilters"
+      ],
+      "allowedVersions": "<2.2.0"
+    },
+    {
+      "description": "Group GitHub Actions bumps into one PR; they never change the image.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "github actions"
+    }
+  ]
+}
