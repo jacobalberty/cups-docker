@@ -1,0 +1,26 @@
+# Groups the "What's Changed" list that release.yml appends to each GitHub
+# release. A PR goes in the first category whose labels it has. Renovate
+# applies cups / dependencies / ci itself (see renovate.json); label other
+# PRs by hand, or they land under "Other changes".
+changelog:
+  exclude:
+    labels:
+      - skip-changelog
+  categories:
+    - title: CUPS
+      labels:
+        - cups
+    - title: Dependencies
+      labels:
+        - dependencies
+    - title: Image fixes
+      labels:
+        - bug
+        - fix
+    - title: CI and docs
+      labels:
+        - ci
+        - documentation
+    - title: Other changes
+      labels:
+        - "*"

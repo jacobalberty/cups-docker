@@ -5,7 +5,19 @@
     "customManagers:dockerfileVersions"
   ],
   "dependencyDashboard": true,
+  "labels": [
+    "dependencies"
+  ],
   "packageRules": [
+    {
+      "description": "Label CUPS bumps so they get their own section in the release notes (.github/release.yml).",
+      "matchPackageNames": [
+        "OpenPrinting/cups"
+      ],
+      "addLabels": [
+        "cups"
+      ]
+    },
     {
       "description": "Stay on libcupsfilters 2.1.x: upstream marks 2.2.0/2.2.1 as regressed by the QPDF->PDFio transition and recommends 2.1.x. Lift once a fixed 2.2.x ships.",
       "matchPackageNames": [
@@ -14,11 +26,14 @@
       "allowedVersions": "<2.2.0"
     },
     {
-      "description": "Group GitHub Actions bumps into one PR; they never change the image.",
+      "description": "Group GitHub Actions bumps into one PR labelled ci; they never change the image.",
       "matchManagers": [
         "github-actions"
       ],
-      "groupName": "github actions"
+      "groupName": "github actions",
+      "labels": [
+        "ci"
+      ]
     }
   ]
 }
