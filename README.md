@@ -8,6 +8,35 @@ This image is a bit different from the other cups images on the docker hub in th
 
 If you have a suggestion for how to improve usability of this image, feel free to post on the [github issue tracker](https://github.com/jacobalberty/cups-docker/issues).
 
+## Versions and tags
+
+Image versions follow the CUPS version they contain:
+
+- `v2.4.20`: the first image built with CUPS 2.4.20.
+- `v2.4.20-1`, `v2.4.20-2`, ...: later images on the same CUPS version, released
+  when other dependencies (libcupsfilters, libppd, cups-filters, qpdf, the Debian
+  base) are updated or the image itself is fixed.
+- `v2.4`, `v2`, `latest`: move to the newest release.
+
+Release tags never move once published, so pin one of them to get a fixed image.
+Each [release](https://github.com/jacobalberty/cups-docker/releases) lists the
+component versions it contains and what changed.
+
+Releases are cut automatically when a change to the image merges to `main`.
+To keep up with releases using Renovate, tell it how the revision suffix sorts:
+
+```json
+{
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["jacobalberty/cups"],
+      "versioning": "regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:-(?<build>\\d+))?$"
+    }
+  ]
+}
+```
+
 ### Current issues with Buster
 
 As of 2.3 this image is on buster.

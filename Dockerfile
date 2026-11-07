@@ -1,11 +1,19 @@
 FROM debian:trixie-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG CUPS_VERSION=2.4.15
+
+# CUPS_VERSION is the base of the image version: releases are tagged
+# v<CUPS_VERSION>, then v<CUPS_VERSION>-N for later image changes.
+# renovate: datasource=github-releases depName=OpenPrinting/cups extractVersion=^v(?<version>.+)$
+ARG CUPS_VERSION=2.4.20
+# renovate: datasource=github-releases depName=OpenPrinting/libppd
 ARG LIBPPD_VERSION=2.1.1
-ARG LIBCUPSFILTERS_VERSION=2.1.1
+# renovate: datasource=github-releases depName=OpenPrinting/libcupsfilters
+ARG LIBCUPSFILTERS_VERSION=2.1.2
+# renovate: datasource=github-releases depName=OpenPrinting/cups-filters
 ARG FILTERS_VERSION=2.0.1
-ARG QPDF_VERSION=12.2.0
+# renovate: datasource=github-releases depName=qpdf/qpdf extractVersion=^v(?<version>.+)$
+ARG QPDF_VERSION=12.4.2
 
 ENV PREFIX=/usr/local/docker
 ENV VOLUME=/config
